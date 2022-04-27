@@ -12,8 +12,8 @@ const MobileDevice = () => {
     // Accessing the user camera and video.
     mediaDevices
       .getUserMedia({
-        video: true,
         audio: false,
+        video: { facingMode: { exact: "environment" } },
       })
       .then((stream) => {
         // Changing the source of video to current stream.
