@@ -4,6 +4,13 @@ const MobileDevice = () => {
   // const [isOpen, setIsOpen] = useState(false);
 
   const onHandlerOpenCamera = () => {
+    let video = document.getElementById("vid");
+    video.style.width = document.width + "px";
+    video.style.height = document.height + "px";
+    video.setAttribute("autoPlay", "");
+    video.setAttribute("muted", "");
+    video.setAttribute("playsinline", "");
+
     if (navigator.mediaDevices === undefined) {
       navigator.mediaDevices = {};
     }
@@ -90,7 +97,7 @@ const MobileDevice = () => {
       <h1>Вы зашли с мобильного устройства. Так что можете открыть камеру</h1>
       <center>
         <div>
-          <video width="300px" height="300px" autoPlay id="vid"></video>
+          <video autoPlay id="vid"></video>
         </div>
         <br />
         <button onClick={() => onHandlerOpenCamera()} id="but" autoPlay>
