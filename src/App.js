@@ -38,7 +38,13 @@ const MobileDevice = () => {
     }
 
     navigator.mediaDevices
-      .getUserMedia({ audio: true, video: true })
+      .getUserMedia({
+        audio: false,
+        video: {
+          sourceId: "default",
+          facingMode: { exact: "user" },
+        },
+      })
       .then(function(stream) {
         var video = document.querySelector("video");
         // Устаревшие браузеры могут не иметь свойство srcObject
@@ -84,7 +90,7 @@ const MobileDevice = () => {
       <h1>Вы зашли с мобильного устройства. Так что можете открыть камеру</h1>
       <center>
         <div>
-          <video width="200px" height="200px" autoPlay id="vid"></video>
+          <video width="300px" height="300px" autoPlay id="vid"></video>
         </div>
         <br />
         <button onClick={() => onHandlerOpenCamera()} id="but" autoPlay>
