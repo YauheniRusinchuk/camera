@@ -47,10 +47,7 @@ const MobileDevice = () => {
     navigator.mediaDevices
       .getUserMedia({
         audio: false,
-        video: {
-          sourceId: "default",
-          facingMode: { exact: "user" },
-        },
+        video: { facingMode: { exact: "environment" } },
       })
       .then(function(stream) {
         var video = document.querySelector("video");
@@ -94,7 +91,9 @@ const MobileDevice = () => {
 
   return (
     <>
-      <h1>Вы зашли с мобильного устройства. Так что можете открыть камеру</h1>
+      <span>
+        Вы зашли с мобильного устройства. Так что можете открыть камеру
+      </span>
       <center>
         <div>
           <video autoPlay id="vid"></video>
