@@ -6,33 +6,38 @@ const MobileDevice = () => {
 
   const onHandlerOpenCamera = () => {
     setIsOpen(true);
-    if (navigator.webkitGetUserMedia != null) {
-      var options = {
+    var but = document.getElementById("but");
+    var video = document.getElementById("vid");
+    var mediaDevices = navigator.mediaDevices;
+    // vid.muted = true;
+    // Accessing the user camera and video.
+    mediaDevices
+      .getUserMedia({
         video: true,
-        audio: true,
-      };
-
-      // запрашиваем доступ к веб-камере
-      navigator.webkitGetUserMedia(
-        options,
-        function(stream) {
-          // получаем тег video
-          var video = document.querySelector("video");
-          // включаем поток в магический URL
-          video.src = window.webkitURL.createObjectURL(stream);
-        },
-        function(e) {
-          console.log("error happened");
-        }
-      );
-    }
+        audio: false,
+      })
+      .then((stream) => {
+        // Changing the source of video to current stream.
+        video.srcObject = stream;
+        video.addEventListener("loadedmetadata", () => {
+          video.play();
+        });
+      })
+      .catch(alert);
   };
 
   return (
     <>
       <h1>Вы зашли с мобильного устройства. Так что можете открыть камеру</h1>
-      <button onClick={() => onHandlerOpenCamera()}>Открыть камеру</button>
-      {isOpen && <video width="300px" height="320px" autoplay></video>}
+      <center>
+        <div>
+          <video width="200px" height="200px" autoPlay id="vid"></video>
+        </div>
+        <br />
+        <button onClick={() => onHandlerOpenCamera()} id="but" autoPlay>
+          Open WebCam
+        </button>
+      </center>
     </>
   );
 };
@@ -40,11 +45,7 @@ const MobileDevice = () => {
 function App() {
   return (
     <div className="App">
-      {isMobile ? (
-        <MobileDevice />
-      ) : (
-        <span>Открытие камеры работает из мобильного девайса</span>
-      )}
+      <MobileDevice />
     </div>
   );
 }
