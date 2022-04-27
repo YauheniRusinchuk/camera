@@ -1,12 +1,11 @@
-import React, { useState } from "react";
-import { isMobile } from "react-device-detect";
+import React from "react";
 
 const MobileDevice = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
 
   const onHandlerOpenCamera = () => {
-    setIsOpen(true);
-    var but = document.getElementById("but");
+    // setIsOpen(true);
+    // var but = document.getElementById("but");
     var video = document.getElementById("vid");
     var mediaDevices = navigator.mediaDevices;
     // vid.muted = true;
