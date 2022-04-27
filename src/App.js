@@ -1,4 +1,5 @@
 import React from "react";
+import { isMobile } from "react-device-detect";
 
 const MobileDevice = () => {
   // const [isOpen, setIsOpen] = useState(false);
@@ -91,18 +92,24 @@ const MobileDevice = () => {
 
   return (
     <>
-      <span>
-        Вы зашли с мобильного устройства. Так что можете открыть камеру
-      </span>
-      <center>
-        <div>
-          <video autoPlay id="vid"></video>
-        </div>
-        <br />
-        <button onClick={() => onHandlerOpenCamera()} id="but" autoPlay>
-          Open WebCam
-        </button>
-      </center>
+      {isMobile ? (
+        <span>
+          Вы зашли с мобильного устройства. Так что можете открыть камеру
+        </span>
+      ) : (
+        <span>Открытие камеры работает только на мобильном девайсе</span>
+      )}
+      {isMobile && (
+        <center>
+          <div>
+            <video autoPlay id="vid"></video>
+          </div>
+          <br />
+          <button onClick={() => onHandlerOpenCamera()} id="but" autoPlay>
+            Open WebCam
+          </button>
+        </center>
+      )}
     </>
   );
 };
