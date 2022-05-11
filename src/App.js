@@ -90,6 +90,11 @@ const MobileDevice = () => {
     //     .catch(alert);
   };
 
+  const onHandlerGoToAppStore = () => {
+    window.location.href =
+      "https://apps.apple.com/ru/app/%D0%BE%D0%B3%D0%BE%D0%BD%D1%8C/id1577796889";
+  };
+
   return (
     <>
       {isMobile ? (
@@ -107,6 +112,9 @@ const MobileDevice = () => {
           <br />
           <button onClick={() => onHandlerOpenCamera()} id="but" autoPlay>
             Open WebCam
+          </button>
+          <button onClick={() => onHandlerGoToAppStore()}>
+            GO TO APP STORE
           </button>
         </center>
       )}
